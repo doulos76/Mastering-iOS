@@ -21,41 +21,46 @@
 //
 
 import UIKit
-
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-   var window: UIWindow?
-   
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-   
-      return true
-   }
-
+  var window: UIWindow?
+  
+  func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+  ) -> Bool {
+    UNUserNotificationCenter.current().requestAuthorization(
+    options: [UNAuthorizationOptions.badge, .sound, .alert]
+    ) { (granted, error) in
+      if granted {
+        UNUserNotificationCenter.current().delegate = self
+      }
+      print("granted \(granted)")
+    }
+    return true
+  }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+extension AppDelegate: UNUserNotificationCenterDelegate {
+  func userNotificationCenter(
+    _ center: UNUserNotificationCenter,
+    willPresent notification: UNNotification,
+    withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+  ) {
+    let content = notification.request.content
+    let trigger = notification.request.trigger
+    completionHandler([UNNotificationPresentationOptions.alert])
+  }
+  
+  func userNotificationCenter(
+    _ center: UNUserNotificationCenter,
+    didReceive response: UNNotificationResponse,
+    withCompletionHandler completionHandler: @escaping () -> Void
+  ) {
+    let content = response.notification.request.content
+    let trigger = response.notification.request.trigger
+    completionHandler()
+  }
+}

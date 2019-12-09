@@ -24,60 +24,45 @@ import UIKit
 import UserNotifications
 
 class NotificationSettingsTableViewController: UITableViewController {
-   
-   @IBOutlet weak var authorizationStatusLabel: UILabel!
-   @IBOutlet weak var alertStyleLabel: UILabel!
-   @IBOutlet weak var showPreviewsLabel: UILabel!
-   @IBOutlet weak var alertLabel: UILabel!
-   @IBOutlet weak var badgeLabel: UILabel!
-   @IBOutlet weak var soundLabel: UILabel!
-   @IBOutlet weak var notificationCenterLabel: UILabel!
-   @IBOutlet weak var lockScreenLabel: UILabel!
-   
-   func update(from settings: UNNotificationSettings) {
-      
-   }
-   
-   @objc func refresh() {
-      
-   }
-   
-   override func viewDidLoad() {
-      super.viewDidLoad()
-      
-      refresh()
-      
-      NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
-   }
+  
+  @IBOutlet weak var authorizationStatusLabel: UILabel!
+  @IBOutlet weak var alertStyleLabel: UILabel!
+  @IBOutlet weak var showPreviewsLabel: UILabel!
+  @IBOutlet weak var alertLabel: UILabel!
+  @IBOutlet weak var badgeLabel: UILabel!
+  @IBOutlet weak var soundLabel: UILabel!
+  @IBOutlet weak var notificationCenterLabel: UILabel!
+  @IBOutlet weak var lockScreenLabel: UILabel!
+  
+  func update(from settings: UNNotificationSettings) {
+    
+  }
+  
+  @objc func refresh() {
+    
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    refresh()
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(refresh),
+      name: NSNotification.Name.NSExtensionHostWillEnterForeground,
+      object: nil)
+  }
 }
 
 extension UNNotificationSetting {
-   var stringValue: String {
-      switch self {
-      case .notSupported:
-         return "Not Supported"
-      case .enabled:
-         return "Enabled"
-      case .disabled:
-         return "Disabled"
-      }
-   }
+  var stringValue: String {
+    switch self {
+    case .notSupported:
+      return "Not Supported"
+    case .enabled:
+      return "Enabled"
+    case .disabled:
+      return "Disabled"
+    }
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

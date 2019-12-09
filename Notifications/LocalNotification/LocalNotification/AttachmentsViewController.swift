@@ -29,7 +29,7 @@ class AttachmentsViewController: UIViewController {
       let content = UNMutableNotificationContent()
       content.title = "Hello"
       content.body = "Image Attachment"
-      content.sound = UNNotificationSound.default()
+      content.sound = UNNotificationSound.default
       
       
       
@@ -42,7 +42,7 @@ class AttachmentsViewController: UIViewController {
       let content = UNMutableNotificationContent()
       content.title = "Hello"
       content.body = "Audio Attachment"
-      content.sound = UNNotificationSound.default()
+      content.sound = UNNotificationSound.default
       
       
       
@@ -55,7 +55,7 @@ class AttachmentsViewController: UIViewController {
       let content = UNMutableNotificationContent()
       content.title = "Hello"
       content.body = "Video Attachment"
-      content.sound = UNNotificationSound.default()
+      content.sound = UNNotificationSound.default
 
       
       

@@ -30,7 +30,7 @@ class ActionableNotificationViewController: UIViewController {
       let content = UNMutableNotificationContent()
       content.title = "Hello"
       content.body = "KxCoding just shared a photo."
-      content.sound = UNNotificationSound.default()
+      content.sound = UNNotificationSound.default
       
       guard let url = Bundle.main.url(forResource: "hello", withExtension: "png") else {
          return
